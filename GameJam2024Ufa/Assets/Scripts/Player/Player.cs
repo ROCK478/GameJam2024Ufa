@@ -65,7 +65,7 @@ public class Player : MonoBehaviour
         Shoot();
         Jump();
         StealthMove();
-        if (Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKeyDown(KeyCode.C) && !_isDashing)
         {
             StartCoroutine(Dash());
         }
