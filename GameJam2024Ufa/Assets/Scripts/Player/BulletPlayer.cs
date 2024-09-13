@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class BulletPlayer : MonoBehaviour
 {
     public int BulletDamage;
     private void OnCollisionEnter2D(Collision2D collision)

@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float _bulletSpeed;
     [SerializeField] private float _timeLifeBullet;
     private Transform _firePoint;
-    private int _damage = 20;
+    [SerializeField] private int _damageBullet;
 
     [Header("Настройки здоровья")]
     [SerializeField] private int _maxHealth = 100;
@@ -35,6 +35,11 @@ public class Player : MonoBehaviour
     [NonSerialized]public bool IsStealth = false;
     [SerializeField] private float _stealthMoveSpeed;
 
+    [Header("Настройки ближнего боя")]
+    [SerializeField] private GameObject PlayerRangeForAttack;
+    [SerializeField] private float _timeAttack;
+    [SerializeField] public int DamageMelee;
+
 
 
     private void Awake()
@@ -42,6 +47,7 @@ public class Player : MonoBehaviour
         _animator = GetComponent<Animator>();
         _rb = GetComponent<Rigidbody2D>();
         _firePoint = GameObject.Find("FirePoint").transform;
+        PlayerRangeForAttack = transform.Find("PlayerRangeForAttack").gameObject;
     }
     private void Start()
     {
@@ -89,9 +95,9 @@ public class Player : MonoBehaviour
         {
             GameObject Bullet = Instantiate(_bulletPrephab, _firePoint.position, _firePoint.rotation);
             Rigidbody2D BulletRB = Bullet.GetComponent<Rigidbody2D>();
-            Bullet.AddComponent<Bullet>();
-            Bullet BulletScrpipt = Bullet.GetComponent<Bullet>();
-            BulletScrpipt.BulletDamage = _damage;
+            Bullet.AddComponent<BulletPlayer>();
+            BulletPlayer BulletScrpipt = Bullet.GetComponent<BulletPlayer>();
+            BulletScrpipt.BulletDamage = _damageBullet;
             if (_lookRight)
             {
                 BulletRB.velocity = new Vector2(_bulletSpeed, 0);
@@ -141,6 +147,15 @@ public class Player : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {
             IsStealth = false;
+        }
+    }
+
+    private void MeleeAttack()
+    {
+        if (Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            PlayerRangeForAttack.SetActive(true);
+            Invoke("PlayerRangeForAttack.SetActive(false)", _timeAttack);
         }
     }
 }
