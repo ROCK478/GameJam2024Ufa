@@ -226,11 +226,11 @@ MonoBehaviour:
   IsDetected: 0
   _lookRight: 0
   _bulletPrephab: {fileID: 6879916667609576821, guid: 75f492eb016ca3b47a03d8ced6e16e82, type: 3}
-  _bulletSpeed: 5
+  _bulletSpeed: 7
   _timeLifeBullet: 5
   _firePoint: {fileID: 4945076700034186414}
   _damageBullet: 2
-  TimerDuration: 1
+  TimerDuration: 2
 --- !u!70 &3676514547766442595
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
