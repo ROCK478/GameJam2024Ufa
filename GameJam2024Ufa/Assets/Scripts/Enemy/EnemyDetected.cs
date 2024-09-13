@@ -15,7 +15,20 @@ public class EnemyDetected : MonoBehaviour
 	{
 		if (other.gameObject.tag == "Player")
 		{
-			transform.parent.gameObject.GetComponent<Melee>().IsDetected = true;
+            bool RightForPerson = (transform.parent.gameObject.transform.position.x - _hero.transform.position.x > 0) ? true : false;
+			if (RightForPerson == true && _hero.GetComponent<Player>().IsStealth && transform.parent.gameObject.GetComponent<Enemy>()._lookRight == true)
+			{
+				transform.parent.gameObject.GetComponent<Enemy>().IsDetected = false;
+
+            }
+			else if(RightForPerson == false && _hero.GetComponent<Player>().IsStealth && transform.parent.gameObject.GetComponent<Enemy>()._lookRight == false)
+			{
+                transform.parent.gameObject.GetComponent<Enemy>().IsDetected = false;
+            }
+			else
+			{
+                transform.parent.gameObject.GetComponent<Enemy>().IsDetected = true;
+            }
 		}
 	}
 }

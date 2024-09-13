@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
     public bool IsDetected = false;
     private Rigidbody2D _rb;
     private Transform _player;
+    public bool _lookRight;
 
     private void Awake()
     {
@@ -24,8 +25,6 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(int damage) // Получение урона
     {
         _currentHealth -= damage;
-        Debug.Log(_currentHealth);
-
         if (_currentHealth <= 0)
         {
             Destroy(this.gameObject);

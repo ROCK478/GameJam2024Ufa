@@ -16,15 +16,24 @@ public class Melee : Enemy
     }
     private void Update()
     {
-        if (IsDetected && transform.position.x - _hero.transform.position.x > 0)
+        bool RightForPerson = (transform.position.x - _hero.transform.position.x > 0) ? true : false;
+        if (IsDetected && RightForPerson)
         {
             _rb.velocity = (new Vector2(-_speed, _rb.velocity.y));
-            transform.rotation = new Quaternion(0f, 180f, 0f, 0f);
+            if (_lookRight == true)
+            {
+                transform.localScale *= new Vector2(-1, 1);
+                _lookRight = !_lookRight;
+            }
         }
-        else if (IsDetected && transform.position.x - _hero.transform.position.x < 0)
+        else if (IsDetected && !RightForPerson)
         {
             _rb.velocity = (new Vector2(_speed, _rb.velocity.y));
-            transform.rotation = new Quaternion(0f, 0f, 0f, 0f);
+            if (_lookRight == false)
+            {
+                transform.localScale *= new Vector2(-1, 1);
+                _lookRight = !_lookRight;
+            }
         }
     }
 }

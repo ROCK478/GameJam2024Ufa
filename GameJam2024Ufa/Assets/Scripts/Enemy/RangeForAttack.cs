@@ -7,7 +7,7 @@ public class RangeForAttack : MonoBehaviour
 {
     private GameObject _hero;
     private bool _inRange = false;
-    [NonSerialized] private bool _attack  = true;
+    private bool _attack  = true;
     [Range(0f, 10f)] public float TimerDuration; // Задержка между ударами
     [NonSerialized] public float TimeForAttack;
 
