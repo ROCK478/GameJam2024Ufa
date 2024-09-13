@@ -19,14 +19,6 @@ public class Player : MonoBehaviour
     public bool _isGround;
     [SerializeField] private float _rayDistance = 0.6f; //Расстояние для поиска земли для недоступности множественных прыжков
 
-
-    [Header("Настройки стрельбы")]
-    [SerializeField] private GameObject _bulletPrephab;
-    [SerializeField] private float _bulletSpeed;
-    [SerializeField] private float _timeLifeBullet;
-    private Transform _firePoint;
-    [SerializeField] private int _damageBullet;
-
     [Header("Настройки здоровья")]
     [SerializeField] private int _maxHealth = 100;
     private int _currentHealth;
@@ -51,7 +43,6 @@ public class Player : MonoBehaviour
     {
         _animator = GetComponent<Animator>();
         _rb = GetComponent<Rigidbody2D>();
-        _firePoint = GameObject.Find("FirePoint").transform;
         PlayerRangeForAttack = transform.Find("PlayerRangeForAttack").gameObject;
     }
     private void Start()
@@ -61,7 +52,6 @@ public class Player : MonoBehaviour
     private void Update()
     {
         Flip();
-        Shoot();
         Jump();
         StealthMove();
         if (Input.GetKeyDown(KeyCode.C) && !_isDashing)
@@ -94,27 +84,6 @@ public class Player : MonoBehaviour
             gameObject.
             transform.localScale *= new Vector2(-1, 1);
             _lookRight = !_lookRight;
-        }
-    }
-
-    private void Shoot()
-    {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            GameObject Bullet = Instantiate(_bulletPrephab, _firePoint.position, _firePoint.rotation);
-            Rigidbody2D BulletRB = Bullet.GetComponent<Rigidbody2D>();
-            Bullet.AddComponent<BulletPlayer>();
-            BulletPlayer BulletScrpipt = Bullet.GetComponent<BulletPlayer>();
-            BulletScrpipt.BulletDamage = _damageBullet;
-            if (_lookRight)
-            {
-                BulletRB.velocity = new Vector2(_bulletSpeed, 0);
-            }
-            else
-            {
-                BulletRB.velocity = new Vector2(_bulletSpeed * -1, 0);
-            }
-            Destroy(Bullet, _timeLifeBullet);
         }
     }
 
@@ -160,7 +129,7 @@ public class Player : MonoBehaviour
 
     private void MeleeAttack()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse1))
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             PlayerRangeForAttack.SetActive(true);
             Invoke("PlayerRangeForAttack.SetActive(false)", _timeAttack);

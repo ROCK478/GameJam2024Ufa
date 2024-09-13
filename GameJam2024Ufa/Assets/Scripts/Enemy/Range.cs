@@ -61,8 +61,8 @@ public class Range : Enemy
     {
         GameObject Bullet = Instantiate(_bulletPrephab, _firePoint.position, _firePoint.rotation);
         Rigidbody2D BulletRB = Bullet.GetComponent<Rigidbody2D>();
-        Bullet.AddComponent<BulletPlayer>();
-        BulletPlayer BulletScrpipt = Bullet.GetComponent<BulletPlayer>();
+        Bullet.AddComponent<Bullet>();
+        Bullet BulletScrpipt = Bullet.GetComponent<Bullet>();
         BulletScrpipt.BulletDamage = _damageBullet;
         if (_lookRight)
         {

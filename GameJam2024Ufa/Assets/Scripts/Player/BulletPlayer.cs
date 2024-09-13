@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class BulletPlayer : MonoBehaviour
+public class Bullet : MonoBehaviour
 {
     public int BulletDamage;
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "Player")
         {
-            collision.gameObject.GetComponent<Enemy>().TakeDamage(BulletDamage);
+            collision.gameObject.GetComponent<Player>().TakeDamage(BulletDamage);
         }
         if (collision != null)
         {
