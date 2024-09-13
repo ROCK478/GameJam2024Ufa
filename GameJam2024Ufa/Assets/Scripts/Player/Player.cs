@@ -60,7 +60,6 @@ public class Player : MonoBehaviour
     }
     private void Update()
     {
-        Move();
         Flip();
         Shoot();
         Jump();
