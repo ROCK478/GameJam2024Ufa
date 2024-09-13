@@ -8,7 +8,7 @@ public class Range : Enemy
     [SerializeField] private GameObject _bulletPrephab;
     [SerializeField] private float _bulletSpeed;
     [SerializeField] private float _timeLifeBullet;
-    private Transform _firePoint;
+    public Transform _firePoint;
     [SerializeField] private int _damageBullet;
     private GameObject _hero;
     private Rigidbody2D _rb;

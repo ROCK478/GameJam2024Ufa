@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class FallPlatform : MonoBehaviour
@@ -18,6 +19,8 @@ public class FallPlatform : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
             gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
             Debug.Log("dfsf");
+            yield return new WaitForSeconds(5);
+            Destroy(gameObject);
         }
     }
 
