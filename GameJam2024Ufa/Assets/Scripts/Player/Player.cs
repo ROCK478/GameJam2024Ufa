@@ -117,7 +117,7 @@ public class Player : MonoBehaviour
         _currentHealth -= damage;
         if (_currentHealth <= 0)
         {
-            SceneManager.LoadScene("SampleScene");
+            SceneManager.LoadScene("Lvl 1");
         }
     }
 
@@ -127,7 +127,7 @@ public class Player : MonoBehaviour
         {
             IsStealth = true;
         }
-        if (Input.GetKeyUp(KeyCode.LeftControl))
+        if (Input.GetKeyUp(KeyCode.LeftControl) && Input.GetAxis("Horizontal") != 0)
         {
             IsStealth = false;
         }
