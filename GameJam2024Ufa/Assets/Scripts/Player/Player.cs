@@ -51,17 +51,23 @@ public class Player : MonoBehaviour
     }
     private void Update()
     {
-        Flip();
-        Jump();
-        StealthMove();
-        if (Input.GetKeyDown(KeyCode.C) && !_isDashing)
+        if (DialogManager.Stop == false)
         {
-            StartCoroutine(Dash());
+            Flip();
+            Jump();
+            StealthMove();
+            if (Input.GetKeyDown(KeyCode.C) && !_isDashing)
+            {
+                StartCoroutine(Dash());
+            }
         }
     }
     private void FixedUpdate()
     {
-        Move();
+        if (DialogManager.Stop == false)
+        {
+            Move();
+        }
     }
 
     private void Move()
