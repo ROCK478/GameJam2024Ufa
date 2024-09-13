@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    private float _maxHealth;
+    [SerializeField]private float _maxHealth;
     private float _currentHealth;
     public bool IsDetected = false;
     private Rigidbody2D _rb;
