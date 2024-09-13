@@ -31,6 +31,10 @@ public class Player : MonoBehaviour
     [SerializeField] private int _maxHealth = 100;
     private int _currentHealth;
 
+    [Header("Настройки тихой ходьбы")]
+    [NonSerialized]public bool IsStealth = false;
+    [SerializeField] private float _stealthMoveSpeed;
+
 
 
     private void Awake()
@@ -49,6 +53,7 @@ public class Player : MonoBehaviour
         Flip();
         Shoot();
         Jump();
+        StealthMove();
     }
     private void FixedUpdate()
     {
@@ -57,7 +62,14 @@ public class Player : MonoBehaviour
 
     private void Move()
     {
-        _rb.velocity = (new Vector2(Input.GetAxis("Horizontal") * _moveSpeed, _rb.velocity.y));
+        if (IsStealth)
+        {
+            _rb.velocity = (new Vector2(Input.GetAxis("Horizontal") * _stealthMoveSpeed, _rb.velocity.y));
+        }
+        else
+        {
+            _rb.velocity = (new Vector2(Input.GetAxis("Horizontal") * _moveSpeed, _rb.velocity.y));
+        }
         _animator.SetFloat("xVelocity", Math.Abs(_rb.velocity.x));
     }
 
@@ -117,6 +129,18 @@ public class Player : MonoBehaviour
         if (_currentHealth <= 0)
         {
             SceneManager.LoadScene("SampleScene");
+        }
+    }
+
+    private void StealthMove()
+    {
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            IsStealth = true;
+        }
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            IsStealth = false;
         }
     }
 }
