@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Heal : MonoBehaviour
 {
-    public PlayerHealth playerHealth;
 
     public int heal = 20;
 
@@ -12,7 +11,7 @@ public class Heal : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            playerHealth.TakeHeal(heal);
+            gameObject.GetComponent<PlayerHealth>().TakeHeal(heal);
             Destroy(gameObject);
         }
 
