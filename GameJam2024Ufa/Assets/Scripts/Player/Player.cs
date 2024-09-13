@@ -40,6 +40,11 @@ public class Player : MonoBehaviour
     [SerializeField] private float _timeAttack;
     [SerializeField] public int DamageMelee;
 
+    [Header("Настройки подката")]
+    private bool _isDashing;
+    [SerializeField] private float _dashForce;
+    [SerializeField] private float _dashDuration;
+
 
 
     private void Awake()
@@ -60,6 +65,10 @@ public class Player : MonoBehaviour
         Shoot();
         Jump();
         StealthMove();
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            StartCoroutine(Dash());
+        }
     }
     private void FixedUpdate()
     {
@@ -140,11 +149,11 @@ public class Player : MonoBehaviour
 
     private void StealthMove()
     {
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftControl))
         {
             IsStealth = true;
         }
-        if (Input.GetKeyUp(KeyCode.LeftShift))
+        if (Input.GetKeyUp(KeyCode.LeftControl))
         {
             IsStealth = false;
         }
@@ -157,5 +166,14 @@ public class Player : MonoBehaviour
             PlayerRangeForAttack.SetActive(true);
             Invoke("PlayerRangeForAttack.SetActive(false)", _timeAttack);
         }
+    }
+
+    private IEnumerator Dash()
+    {
+        _isDashing = true;
+        _rb.velocity = new Vector2(_dashForce, _rb.velocity.y);
+        yield return new WaitForSeconds(_dashDuration);
+        _rb.velocity = Vector2.zero;
+        _isDashing = false;
     }
 }
