@@ -9,7 +9,6 @@ using System.Threading;
 
 public class Hacking : MonoBehaviour
 {
-    private bool GameEnd = false;
     private int CountRightAnswers = 0;
     private int iterator; // Итератор
     private String[] Answer = new string[5]; // Правильный ответ
