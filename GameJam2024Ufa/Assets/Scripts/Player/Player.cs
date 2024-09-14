@@ -143,6 +143,7 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
+            _animator.SetTrigger("isAttack");
             PlayerRangeForAttack.SetActive(true);
             StartCoroutine(TimeDuration());
         }
