@@ -5,6 +5,7 @@ using System;
 using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
 using Unity.Burst.CompilerServices;
+using UnityEditor;
 
 public class Player : MonoBehaviour
 {
@@ -38,10 +39,13 @@ public class Player : MonoBehaviour
     [SerializeField] private float _dashForce;
     [SerializeField] private float _dashDuration;
 
+    private SpriteRenderer _sr;
+
 
 
     private void Awake()
     {
+        _sr = GetComponent<SpriteRenderer>();
         _animator = GetComponent<Animator>();
         _rb = GetComponent<Rigidbody2D>();
         PlayerRangeForAttack = transform.Find("PlayerRangeForAttack").gameObject;
