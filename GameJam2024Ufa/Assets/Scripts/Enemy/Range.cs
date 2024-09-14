@@ -16,9 +16,12 @@ public class Range : Enemy
     [Range(0f, 10f)] public float TimerDuration; // Задержка между ударами
     [NonSerialized] public float TimeForAttack;
     public Animator animator;
+    public AudioClip a;
+    public AudioSource AudioSource;
 
     private void Awake()
     {
+        AudioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
         _hero = GameObject.FindGameObjectWithTag("Player");
         _rb = GetComponent<Rigidbody2D>();
@@ -67,6 +70,7 @@ public class Range : Enemy
 
     public void Shoot()
     {
+        AudioSource.PlayOneShot(a);
         GameObject Bullet = Instantiate(_bulletPrephab, _firePoint.position, _firePoint.rotation);
         Rigidbody2D BulletRB = Bullet.GetComponent<Rigidbody2D>();
         Bullet.AddComponent<Bullet>();
