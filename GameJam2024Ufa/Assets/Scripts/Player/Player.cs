@@ -117,7 +117,7 @@ public class Player : MonoBehaviour
         _currentHealth -= damage;
         if (_currentHealth <= 0)
         {
-            SceneManager.LoadScene("Lvl 1");
+            SceneManager.LoadScene("Lvl 3");
         }
     }
 
