@@ -11,4 +11,6 @@ public class PlayerRangeForAttack : MonoBehaviour
             other.gameObject.GetComponent<Enemy>().TakeDamage(transform.parent.GetComponent<Player>().DamageMelee);
         }
     }
+
+ 
 }

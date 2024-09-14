@@ -6,16 +6,16 @@ using UnityEngine.UI;
 
 public class DialogManager : MonoBehaviour
 {
-    public GameObject windowDialog; // окно диалога (image)
-    public GameObject pressFforTalk; //подсказка для нажатия клавиши(надпись)
-    public TextMeshProUGUI textDialog; // текст диалога
-    public Button button; //кнопка далее
-    public bool GoTalk = false; //кнопка нажалась
-    public string[] message; //сообщения (прописываем в инспекторе)
-    private int NumberDialog = 0; //номер диалога
-    public GameObject[] SpeakPersons; // говорящие персонажи по порядку
-    private GameObject SpeakPersonNow; // говорящий персонаж сейчас
-    private Vector2 rememberFirstScale; // предыдущий размер персонажа
+    public GameObject windowDialog;
+    public GameObject pressFforTalk; 
+    public TextMeshProUGUI textDialog; 
+    public Button button; 
+    public bool GoTalk = false; 
+    public string[] message; 
+    private int NumberDialog = 0; 
+    public GameObject[] SpeakPersons; 
+    private GameObject SpeakPersonNow; 
+    private Vector2 rememberFirstScale;
     public static bool Stop = false;
 
 
@@ -38,8 +38,7 @@ public class DialogManager : MonoBehaviour
             {
                 pressFforTalk.SetActive(false);
                 GoTalk = true;
-                //Time.timeScale = 0f;
-                Stop = true;
+                Time.timeScale = 0f;
                 windowDialog.SetActive(true);
                 textDialog.text = message[NumberDialog];
                 SpeakPersonNow = SpeakPersons[NumberDialog];
@@ -52,8 +51,7 @@ public class DialogManager : MonoBehaviour
                 if (NumberDialog == message.Length - 1)
                 {
                     button.gameObject.SetActive(false);
-                    //Time.timeScale = 1f;
-                    Stop = false;
+                    Time.timeScale = 1f;
                 }
                 else
                 {
@@ -87,8 +85,7 @@ public class DialogManager : MonoBehaviour
         if (NumberDialog == message.Length - 1)
         {
             button.gameObject.SetActive(false);
-            //Time.timeScale = 1f;
-            Stop = false;
+            Time.timeScale = 1f;
         }
     }
 

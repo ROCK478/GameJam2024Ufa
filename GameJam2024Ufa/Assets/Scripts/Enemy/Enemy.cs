@@ -6,13 +6,12 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField]private float _maxHealth;
-    private float _currentHealth;
+    public float _currentHealth;
     public bool IsDetected = false;
     public bool _lookRight;
 
-    private void Awake()
+    private void Start()
     {
-        _maxHealth = 100;
         _currentHealth = _maxHealth;
     }
 

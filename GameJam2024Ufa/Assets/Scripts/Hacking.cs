@@ -9,6 +9,7 @@ using System.Threading;
 
 public class Hacking : MonoBehaviour
 {
+    private GameObject _hero;
     private int CountRightAnswers = 0;
     private int iterator; // Итератор
     private String[] Answer = new string[5]; // Правильный ответ
@@ -25,12 +26,15 @@ public class Hacking : MonoBehaviour
     [Header("Операция")]
     public TextMeshProUGUI Operation;
     public String[] Operations = new String[3];
+    public GameObject NextHacking;
+    private bool GameEnd = false;
 
     private void Start()
     {
         Operations[0] = "or";
         Operations[1] = "and";
         Operations[2] = "xor";
+        _hero = GameObject.FindGameObjectWithTag("Player");
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -94,6 +98,12 @@ public class Hacking : MonoBehaviour
         {
             StartCoroutine(NonActiveScreen());
         }
+        if (NextHacking != null)
+        {  
+            if (GameEnd = true || (transform.position.x - _hero.transform.position.x) < 0) 
+            NextHacking.SetActive(true);
+            Destroy(this.gameObject);
+        }
 
     }
 
@@ -147,12 +157,13 @@ public class Hacking : MonoBehaviour
 
         if (CountRightAnswers == 5)
         {
-            Destroy(transform.parent.gameObject, 1f);
+            Destroy(transform.parent.gameObject, 0.4f);
         }
         else
         {
             transform.parent.gameObject.GetComponent<Enemy>().IsDetected = true;
             Destroy(this.gameObject);
         }
+        GameEnd = true;
     }
 }

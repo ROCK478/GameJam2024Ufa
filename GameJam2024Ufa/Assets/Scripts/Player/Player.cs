@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
 
     [Header("Настройки здоровья")]
     [SerializeField] private int _maxHealth = 4;
-    private int _currentHealth;
+    public int _currentHealth;
 
     [Header("Настройки тихой ходьбы")]
     [NonSerialized]public bool IsStealth = false;
@@ -57,6 +57,7 @@ public class Player : MonoBehaviour
             Flip();
             Jump();
             StealthMove();
+            MeleeAttack();
             if (Input.GetKeyDown(KeyCode.C) && !_isDashing)
             {
                 StartCoroutine(Dash());
@@ -139,7 +140,7 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             PlayerRangeForAttack.SetActive(true);
-            Invoke("PlayerRangeForAttack.SetActive(false)", _timeAttack);
+            StartCoroutine(TimeDuration());
         }
     }
 
@@ -150,5 +151,11 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(_dashDuration);
         _rb.velocity = Vector2.zero;
         _isDashing = false;
+    }
+
+    private IEnumerator TimeDuration()
+    {
+        yield return new WaitForSeconds(0.2f);
+        PlayerRangeForAttack.SetActive(false);
     }
 }

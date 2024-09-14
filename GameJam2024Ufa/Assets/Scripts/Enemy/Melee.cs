@@ -6,7 +6,7 @@ public class Melee : Enemy
 {
     private GameObject _hero;
     [SerializeField] private float _speed;
-    public int _damage = 20;
+    public int _damage = 1;
     private Rigidbody2D _rb;
 
     private void Awake()
