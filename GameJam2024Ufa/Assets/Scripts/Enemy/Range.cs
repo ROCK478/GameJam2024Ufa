@@ -15,9 +15,11 @@ public class Range : Enemy
     private bool _canShoot = true;
     [Range(0f, 10f)] public float TimerDuration; // Задержка между ударами
     [NonSerialized] public float TimeForAttack;
+    public Animator animator;
 
     private void Awake()
     {
+        animator = GetComponent<Animator>();
         _hero = GameObject.FindGameObjectWithTag("Player");
         _rb = GetComponent<Rigidbody2D>();
     }
@@ -34,7 +36,8 @@ public class Range : Enemy
             }
             if (_canShoot)
             {
-                Shoot();
+                animator.SetBool("isAtack", true);
+                //Shoot();
                 TimeForAttack = TimerDuration;
             }
             Timer();
@@ -49,15 +52,20 @@ public class Range : Enemy
             }
             if (_canShoot)
             {
-                Shoot();
+                animator.SetBool("isAtack", true);
+                //Shoot();
                 TimeForAttack = TimerDuration;
             }
             Timer();
 
         }
+        else
+        {
+            animator.SetBool("isAtack", false);
+        }
     }
 
-    private void Shoot()
+    public void Shoot()
     {
         GameObject Bullet = Instantiate(_bulletPrephab, _firePoint.position, _firePoint.rotation);
         Rigidbody2D BulletRB = Bullet.GetComponent<Rigidbody2D>();

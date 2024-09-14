@@ -8,6 +8,7 @@ using Unity.Burst.CompilerServices;
 
 public class Player : MonoBehaviour
 {
+    public HealthBar healthBar;
     [Header("Настройки передвижения")]
     [SerializeField] private float _moveSpeed;
     private bool _lookRight = true;
@@ -20,7 +21,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float _rayDistance = 0.6f; //Расстояние для поиска земли для недоступности множественных прыжков
 
     [Header("Настройки здоровья")]
-    [SerializeField] private int _maxHealth = 100;
+    [SerializeField] private int _maxHealth = 4;
     private int _currentHealth;
 
     [Header("Настройки тихой ходьбы")]
@@ -87,8 +88,7 @@ public class Player : MonoBehaviour
     {
         if ((_lookRight && (Input.GetAxis("Horizontal") < 0)) || (!_lookRight && (Input.GetAxis("Horizontal") > 0)))
         {
-            gameObject.
-            transform.localScale *= new Vector2(-1, 1);
+            gameObject.transform.localScale *= new Vector2(-1, 1);
             _lookRight = !_lookRight;
         }
     }
@@ -115,6 +115,7 @@ public class Player : MonoBehaviour
     public void TakeDamage(int damage)
     {
         _currentHealth -= damage;
+        //healthBar.SetHealth(_currentHealth);
         if (_currentHealth <= 0)
         {
             SceneManager.LoadScene("Lvl 3");
