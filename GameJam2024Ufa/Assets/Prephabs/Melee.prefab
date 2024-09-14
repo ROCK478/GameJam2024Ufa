@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 1872087125827723401}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.72, y: -0.44, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -98,7 +98,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6333600907566270871
 Transform:
   m_ObjectHideFlags: 0
@@ -257,7 +257,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 18.6, y: 2}
+  m_Size: {x: 25.6, y: 2}
   m_EdgeRadius: 0
 --- !u!114 &5795355438177772742
 MonoBehaviour:
@@ -284,6 +284,7 @@ GameObject:
   - component: {fileID: 8903928370047731101}
   - component: {fileID: 235519806577973892}
   - component: {fileID: 6600342250806189453}
+  - component: {fileID: 8839914881821452869}
   m_Layer: 0
   m_Name: Melee
   m_TagString: Untagged
@@ -350,9 +351,9 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
+  m_Sprite: {fileID: 467947230, guid: d875dcc0c7eed0f4fa386f793d653167, type: 3}
   m_Color: {r: 0.9245283, g: 0.3532396, b: 0.3532396, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 2}
@@ -393,8 +394,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 2}
+  m_Offset: {x: 0, y: -0.63}
+  m_Size: {x: 2.33, y: 2.56}
   m_Direction: 0
 --- !u!50 &235519806577973892
 Rigidbody2D:
@@ -422,7 +423,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 6
 --- !u!114 &6600342250806189453
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -435,8 +436,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14197641fdfab21409fa741637ef83a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 20
+  _maxHealth: 4
   IsDetected: 0
   _lookRight: 1
   _speed: 2
-  _damage: 20
+  _damage: 1
+--- !u!95 &8839914881821452869
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8304716934387589128}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2a89395ca4baa5a4096cef03ec86f7fc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
