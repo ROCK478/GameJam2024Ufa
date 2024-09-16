@@ -9,7 +9,6 @@ using UnityEditor;
 
 public class Player : MonoBehaviour
 {
-    public HealthBar healthBar;
     [Header("Настройки передвижения")]
     [SerializeField] private float _moveSpeed;
     private bool _lookRight = true;
@@ -62,10 +61,6 @@ public class Player : MonoBehaviour
             Jump();
             StealthMove();
             MeleeAttack();
-            if (Input.GetKeyDown(KeyCode.C) && !_isDashing)
-            {
-                StartCoroutine(Dash());
-            }
         }
     }
     private void FixedUpdate()
@@ -120,7 +115,6 @@ public class Player : MonoBehaviour
     public void TakeDamage(int damage)
     {
         _currentHealth -= damage;
-        //healthBar.SetHealth(_currentHealth);
         if (_currentHealth <= 0)
         {
             SceneManager.LoadScene("Lvl 3");
@@ -148,16 +142,6 @@ public class Player : MonoBehaviour
             StartCoroutine(TimeDuration());
         }
     }
-
-    private IEnumerator Dash()
-    {
-        _isDashing = true;
-        _rb.velocity = new Vector2(_dashForce, _rb.velocity.y);
-        yield return new WaitForSeconds(_dashDuration);
-        _rb.velocity = Vector2.zero;
-        _isDashing = false;
-    }
-
     private IEnumerator TimeDuration()
     {
         yield return new WaitForSeconds(0.2f);
