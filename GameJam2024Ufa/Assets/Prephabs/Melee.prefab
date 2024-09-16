@@ -181,6 +181,7 @@ MonoBehaviour:
   - 
   - 
   - 
+  NextHacking: {fileID: 0}
 --- !u!1 &3552275762250152299
 GameObject:
   m_ObjectHideFlags: 0
@@ -423,7 +424,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 6
+  m_Constraints: 4
 --- !u!114 &6600342250806189453
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -437,6 +438,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHealth: 4
+  _currentHealth: 0
   IsDetected: 0
   _lookRight: 1
   _speed: 2
