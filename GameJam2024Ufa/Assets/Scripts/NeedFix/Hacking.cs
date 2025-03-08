@@ -9,7 +9,7 @@ using System.Threading;
 
 public class Hacking : MonoBehaviour
 {
-    private GameObject _hero;
+    private GameObject _hero; 
     private int CountRightAnswers = 0;
     private int iterator; // Итератор
     private String[] Answer = new string[5]; // Правильный ответ
@@ -18,28 +18,52 @@ public class Hacking : MonoBehaviour
     public GameObject pressEforHack;// надпись нажмите Е для взлома
     public GameObject windowHack;//Окно с заданием
     [Header("Первая строка")]
-    public TextMeshProUGUI[] FirstStringValue; //Заполняем в инспекторе как матрицу;
+    public TextMeshProUGUI[] FirstStringValue = new TextMeshProUGUI[5];
     [Header("Вторая строка")]
-    public TextMeshProUGUI[] SecondStringValue; //Заполняем в инспекторе
+    public TextMeshProUGUI[] SecondStringValue = new TextMeshProUGUI[5];
     [Header("Третья строка")]
-    public TextMeshProUGUI[] ThreeStringValue; //Заполняем в инспекторе
+    public TextMeshProUGUI[] ThreeStringValue = new TextMeshProUGUI[5];
     [Header("Операция")]
     public TextMeshProUGUI Operation;
     public String[] Operations = new String[3];
     public GameObject NextHacking;
     private bool GameEnd = false;
 
-    private void Start()
+    private void Awake()
     {
         Operations[0] = "or";
         Operations[1] = "and";
         Operations[2] = "xor";
+        Operation = GameObject.Find("Operations").GetComponent<TextMeshProUGUI>();
         _hero = GameObject.FindGameObjectWithTag("Player");
+        FirstStringValue[0] = GameObject.Find("11").GetComponent<TextMeshProUGUI>();
+        FirstStringValue[1] = GameObject.Find("12").GetComponent<TextMeshProUGUI>();
+        FirstStringValue[2] = GameObject.Find("13").GetComponent<TextMeshProUGUI>();
+        FirstStringValue[3] = GameObject.Find("14").GetComponent<TextMeshProUGUI>();
+        FirstStringValue[4] = GameObject.Find("15").GetComponent<TextMeshProUGUI>();
+        SecondStringValue[0] = GameObject.Find("21").GetComponent<TextMeshProUGUI>();
+        SecondStringValue[1] = GameObject.Find("22").GetComponent<TextMeshProUGUI>();
+        SecondStringValue[2] = GameObject.Find("23").GetComponent<TextMeshProUGUI>();
+        SecondStringValue[3] = GameObject.Find("24").GetComponent<TextMeshProUGUI>();
+        SecondStringValue[4] = GameObject.Find("25").GetComponent<TextMeshProUGUI>();
+        ThreeStringValue[0] = GameObject.Find("31").GetComponent<TextMeshProUGUI>();
+        ThreeStringValue[1] = GameObject.Find("32").GetComponent<TextMeshProUGUI>();
+        ThreeStringValue[2] = GameObject.Find("33").GetComponent<TextMeshProUGUI>();
+        ThreeStringValue[3] = GameObject.Find("34").GetComponent<TextMeshProUGUI>();
+        ThreeStringValue[4] = GameObject.Find("35").GetComponent<TextMeshProUGUI>();
+        windowHack = GameObject.Find("WindowForHack");
+        pressEforHack = GameObject.Find("PressEforHack");
+    }
+
+    private void Start()
+    {
+        windowHack.SetActive(false);
+        pressEforHack.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Player" && pressEforHack != null)
+        if (other.gameObject.tag == "Player")
         {
             pressEforHack.SetActive(true);
         }
@@ -47,7 +71,7 @@ public class Hacking : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player" && pressEforHack != null)
+        if (collision.gameObject.tag == "Player")
         {
             pressEforHack.SetActive(false);
         }
@@ -82,7 +106,7 @@ public class Hacking : MonoBehaviour
                 ThreeStringValue[iterator].text = UserAnswer[iterator];
                 iterator++;
             }
-            else if ((Input.GetKeyDown(KeyCode.Alpha0) || Input.GetKeyDown(KeyCode.Keypad1)) && iterator < 5)
+            else if ((Input.GetKeyDown(KeyCode.Alpha0) || Input.GetKeyDown(KeyCode.Keypad0)) && iterator < 5)
             {
                 UserAnswer[iterator] = "0";
                 ThreeStringValue[iterator].text = UserAnswer[iterator];
@@ -98,12 +122,12 @@ public class Hacking : MonoBehaviour
         {
             StartCoroutine(NonActiveScreen());
         }
-        if (NextHacking != null)
-        {  
-            if (GameEnd = true || (transform.position.x - _hero.transform.position.x) < 0) 
-            NextHacking.SetActive(true);
-            Destroy(this.gameObject);
-        }
+        //if (NextHacking != null)
+        //{  
+            //if (GameEnd = true || (transform.position.x - _hero.transform.position.x) < 0) 
+            //NextHacking.SetActive(true);
+            //Destroy(this.gameObject);
+        //}
 
     }
 
@@ -165,5 +189,11 @@ public class Hacking : MonoBehaviour
             Destroy(this.gameObject);
         }
         GameEnd = true;
+        for (int i = 0;i < 5; i++)
+        {
+            FirstStringValue[i].text = "";
+            SecondStringValue[i].text = "";
+            ThreeStringValue[i].text = "";
+        }
     }
 }
